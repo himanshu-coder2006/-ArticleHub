@@ -8,13 +8,17 @@ const categorySlug = (name) => name.toLowerCase().replaceAll(' & ', '-and-').rep
 
 function TopicExplorer() {
   return <>
-    <section className="topic-spotlight" aria-label="Topic guide">
-      <div><span>Start anywhere</span><h2>Every good read begins with a curious question.</h2></div>
-      <p>Explore a subject, find a practical point of view, then follow the ideas that are most useful to you.</p>
+    <section className="topic-welcome" aria-label="Topic directory introduction">
+      <div className="topic-welcome-copy"><span>ArticleHub topic directory</span><h2>Follow the questions that move you forward.</h2><p>From practical work ideas to better everyday habits, each topic is a curated starting point for useful reading.</p><a href="#latest">See the latest stories <b>&rarr;</b></a></div>
+      <div className="topic-welcome-stats" aria-label="Topic directory statistics"><div><b>{topicCatalog.length}</b><span>topics to explore</span></div><div><b>100%</b><span>original perspectives</span></div><div><b>New</b><span>stories each week</span></div></div>
     </section>
-    <section className="topic-explorer-grid" aria-label="Browse topics">
+    <section className="topic-spotlight" aria-label="Topic guide">
+      <div><span>Choose a direction</span><h2>Every good read begins with a curious question.</h2></div>
+      <p>Browse by subject, find a practical point of view, then follow the ideas that feel most relevant to you.</p>
+    </section>
+    <section className="topic-explorer-grid" aria-label="Browse all topics">
       {topicCatalog.map(([name, description], index) => <a href={`#category-${categorySlug(name)}`} className="topic-explorer-card" key={name}>
-        <span>{String(index + 1).padStart(2, '0')}</span><h2>{name}</h2><p>{description}</p><b>Browse stories <i aria-hidden="true">&rarr;</i></b>
+        <div className="topic-card-heading"><span>{String(index + 1).padStart(2, '0')}</span><i aria-hidden="true">{name.charAt(0)}</i></div><h2>{name}</h2><p>{description}</p><b>Explore topic <i aria-hidden="true">&rarr;</i></b>
       </a>)}
     </section>
   </>
