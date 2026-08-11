@@ -1,0 +1,5 @@
+import { picks } from '../../data/content'
+
+export default function PickedSection() {
+  return <section className="picked-section" id="hand-picked" aria-labelledby="picked-title"><p className="pill-mini">Top Picks</p><h2 id="picked-title">Hand <span>Picked</span></h2><p>Hand-selected quality content you should not miss.</p><div className="category-pills">{['All Categories', 'Technology News', 'Investing', 'Business', 'Gadgets'].map((item) => <a href={`#category-${item.toLowerCase().replaceAll(' ', '-').replace('all-categories', 'all')}`} key={item}>{item}</a>)}</div><div className="picked-actions"><a href="#write">Start Writing</a><a href="#topics">Explore Content</a></div><div className="picked-grid">{picks.map((post, index) => <article className="picked-card" key={post.title} style={{ '--item-delay': `${index * 90}ms` }}><img src={post.image} alt="" /><div><span>{post.tag}</span><h3>{post.title}</h3><p>{post.author} - 3 months ago</p><a href={`#pick-${index}`}>Read Post</a></div></article>)}</div></section>
+}
