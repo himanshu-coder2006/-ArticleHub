@@ -11,11 +11,27 @@ import DiscoveryPage from './pages/DiscoveryPage'
 import HomePage from './pages/HomePage'
 import WritePage from './pages/WritePage'
 
+type AppRoute =
+  | 'home'
+  | 'login'
+  | 'signup'
+  | 'write'
+  | 'contact'
+  | 'authors'
+  | 'topics'
+  | 'latest'
+  | 'popular-posts'
+  | 'resources'
+  | 'business-directory'
+  | string
+
+const getHashRoute = (): AppRoute => window.location.hash.replace('#', '') || 'home'
+
 export default function App() {
-  const [route, setRoute] = useState(() => window.location.hash.replace('#', '') || 'home')
+  const [route, setRoute] = useState<AppRoute>(getHashRoute)
 
   useEffect(() => {
-    const syncRoute = () => setRoute(window.location.hash.replace('#', '') || 'home')
+    const syncRoute = () => setRoute(getHashRoute())
     window.addEventListener('hashchange', syncRoute)
     return () => window.removeEventListener('hashchange', syncRoute)
   }, [])
